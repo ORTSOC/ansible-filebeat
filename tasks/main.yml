@@ -1,2 +1,3 @@
 ---
-# tasks file for sensor-filebeat
+
+- include: install.yml

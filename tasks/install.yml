@@ -1,0 +1,8 @@
+---
+ - hosts: all #remove when adding to infastructure
+   tasks: 
+   
+    - name: install filebeat via dpkg
+      become: yes
+      apt:
+        deb: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.11.1-amd64.deb
