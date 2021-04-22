@@ -1,0 +1,9 @@
+---
+
+ - name: Enable Zeek Module
+   ansible.builtin.shell: filebeat modules enable zeek
+
+ - name: Transfer zeek.yml
+   ansible.builtin.copy:
+     src: zeek.yml
+     dest: /etc/filebeat/modules.d/zeek.yml
