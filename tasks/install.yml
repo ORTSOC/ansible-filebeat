@@ -1,8 +1,11 @@
 ---
- - hosts: all #remove when adding to infastructure
-   tasks: 
-   
-    - name: install filebeat via dpkg
-      become: yes
-      apt:
-        deb: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.11.1-amd64.deb
+
+- name: download elasticsearch
+  get_url:
+    url: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.12.1-amd64.deb
+    dest: "{{ elasticsearch_download_path }}"
+    checksum: sha512:https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.12.1-amd64.deb.sha512
+
+- name: install elasticsearch
+  apt:
+    deb: "{{ elasticsearch_download_path }}"
