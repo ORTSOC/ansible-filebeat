@@ -1,0 +1,10 @@
+output.elasticsearch:
+  hosts: ["{{ es_host }}"]
+  username: "{{ filebeat_username }}"
+  password: " {{ filebeat_password }} "
+  
+  
+setup.kibana:
+  host: "{{ kibana_hosts }}"
+  username: "{{ kibana_username }}"
+  password: "{{ kibana_password }}"

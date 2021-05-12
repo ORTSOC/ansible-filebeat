@@ -7,3 +7,12 @@
    ansible.builtin.copy:
      src: zeek.yml
      dest: /etc/filebeat/modules.d/zeek.yml
+     
+ - name: Copy filebeat.yml 
+   become: yes
+   template:
+     src: filebeat.yml.j2
+     dest: /etc/filebeat/filebeat.yml
+     owner: root
+     group: root
+     mode: "0644"
