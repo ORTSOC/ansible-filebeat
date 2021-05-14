@@ -19,7 +19,7 @@ Role Variables
 - kibana_username: a username to log in to Kibana with.
 - kibana_password: a password to log in to Kibana with.
 - es_hosts: an array of elasticsearch hosts to write to (only used when configuring the pipeline).
-- filebeat_modules: a list of modules to be enabled.
+- filebeat_modules: a list of modules to be enabled (valid options: `suricata`, `zeek`, `wireguard`).
 
 
 Example Playbook
