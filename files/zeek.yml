@@ -65,7 +65,7 @@
   rfb:
     enabled: true
     var.paths: ["/opt/zeek/logs/current/rfb.log"]
-  signatures:
+  signature:
     enabled: true
     var.paths: ["/opt/zeek/logs/current/signatures.log"]
   sip:
