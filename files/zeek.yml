@@ -1,4 +1,7 @@
 - module: zeek
+  capture_loss:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/capture_loss.log"]
   connection:
     enabled: true
     var.paths: ["/opt/zeek/logs/current/conn.log"]
@@ -26,6 +29,9 @@
   http:
     enabled: true
     var.paths: ["/opt/zeek/logs/current/http.log"]
+  intel:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/intel.log"]
   irc:
     enabled: true
     var.paths: ["/opt/zeek/logs/current/irc.log"]
@@ -59,6 +65,9 @@
   rfb:
     enabled: true
     var.paths: ["/opt/zeek/logs/current/rfb.log"]
+  signatures:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/signatures.log"]
   sip:
     enabled: true
     var.paths: ["/opt/zeek/logs/current/sip.log"]
@@ -86,9 +95,15 @@
   ssl:
     enabled: true
     var.paths: ["/opt/zeek/logs/current/ssl.log"]
+  stats:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/stats.log"]
   syslog:
     enabled: true
     var.paths: ["/opt/zeek/logs/current/syslog.log"]
+  traceroute:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/traceroute.log"]
   tunnel:
     enabled: true
     var.paths: ["/opt/zeek/logs/current/tunnel.log"]
