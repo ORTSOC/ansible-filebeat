@@ -1,10 +1,8 @@
-output.elasticsearch:
-  hosts: ["{{ es_host }}"]
-  username: "{{ filebeat_username }}"
-  password: " {{ filebeat_password }} "
+output.logstash:
+  hosts: ["{{ logstash_lb_host }}"]
   
   
 setup.kibana:
-  host: "{{ kibana_hosts }}"
+  host: "{{ kibana_host }}"
   username: "{{ kibana_username }}"
   password: "{{ kibana_password }}"
