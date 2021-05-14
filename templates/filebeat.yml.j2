@@ -1,8 +1,17 @@
 output.logstash:
   hosts: ["{{ logstash_lb_host }}"]
   
-  
 setup.kibana:
   host: "{{ kibana_host }}"
   username: "{{ kibana_username }}"
   password: "{{ kibana_password }}"
+
+{% if es_output %}
+output.elasticsearch:
+  hosts:
+  {% for host in groups["elasticsearch"] %}
+  {% if hostvars[host].master_eligible is defined and hostvars[host].master_eligible %}
+    - {% if elastic_cert_chain is defined %}https://{% else %}http://{% endif %}{{ host }}.{{ domain }}:9200
+  {% endif %}
+  {% endfor %}
+{% endif %}

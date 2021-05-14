@@ -1,2 +1,7 @@
 ---
-# handlers file for sensor-filebeat
+
+- name: restart filebeat
+  systemd:
+    name: filebeat
+    enabled: yes
+    state: restarted

@@ -1,29 +1,49 @@
 ---
 # enable zeek
- - name: Enable Zeek Module
-   ansible.builtin.shell: filebeat modules enable zeek
+- name: enable Zeek Module
+  ansible.builtin.shell: filebeat modules enable zeek
+  notify: restart filebeat
 
- - name: Transfer zeek.yml
-   ansible.builtin.copy:
-     src: zeek.yml
-     dest: /etc/filebeat/modules.d/zeek.yml
-     
+- name: transfer zeek.yml
+  ansible.builtin.copy:
+    src: zeek.yml
+    dest: /etc/filebeat/modules.d/zeek.yml
+  notify: restart filebeat
 
 # enable suricata
- - name: Enable Suricata
-   ansible.builtin.shell: filebeat modules enable suricata
+- name: enable Suricata
+  ansible.builtin.shell: filebeat modules enable suricata
+  notify: restart filebeat
 
- - name: Transfer suricata.yml
-   ansible.builtin.copy:
-     src: suricata.yml
-     dest: /etc/filebeat/modules.d/suricata.yml
-     
+- name: transfer suricata.yml
+  ansible.builtin.copy:
+    src: suricata.yml
+    dest: /etc/filebeat/modules.d/suricata.yml
+  notify: restart filebeat
+
+# setup config with elasticsearch to configure pipeline
+- name: copy filebeat.yml (with ES output)
+  ansible.builtin.template:
+    src: filebeat.yml.j2
+    dest: /etc/filebeat/filebeat.yml
+    owner: root
+    group: root
+    mode: "0644"
+  vars:
+    es_output: true
+  notify: restart filebeat
+
+- name: deploy pipelines to elasticsearch
+  ansible.builtin.shell: filebeat setup --pipelines --modules zeek,suricata
+
 # copy main config from template
- - name: Copy filebeat.yml 
-   become: yes
-   template:
-     src: filebeat.yml.j2
-     dest: /etc/filebeat/filebeat.yml
-     owner: root
-     group: root
-     mode: "0644"
+- name: copy filebeat.yml 
+  ansible.builtin.template:
+    src: filebeat.yml.j2
+    dest: /etc/filebeat/filebeat.yml
+    owner: root
+    group: root
+    mode: "0644"
+  vars:
+    es_output: false
+  notify: restart filebeat
