@@ -1,2 +1,3 @@
 ---
-# vars file for sensor-filebeat
+
+filebeat_download_path: /tmp/filebeat.deb
