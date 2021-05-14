@@ -1,5 +1,5 @@
 ---
-
+# enable zeek
  - name: Enable Zeek Module
    ansible.builtin.shell: filebeat modules enable zeek
 
@@ -8,6 +8,17 @@
      src: zeek.yml
      dest: /etc/filebeat/modules.d/zeek.yml
      
+
+# enable suricata
+ - name: Enable Suricata
+   ansible.builtin.shell: filebeat modules enable suricata
+
+ - name: Transfer suricata.yml
+   ansible.builtin.copy:
+     src: suricata.yml
+     dest: /etc/filebeat/modules.d/suricata.yml
+     
+# copy main config from template
  - name: Copy filebeat.yml 
    become: yes
    template:
