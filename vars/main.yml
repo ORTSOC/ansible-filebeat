@@ -1,7 +1,3 @@
 ---
 
 filebeat_download_path: /tmp/filebeat.deb
-
-filebeat_modules:
-  - suricata
-  - zeek
