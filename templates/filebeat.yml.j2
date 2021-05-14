@@ -8,9 +8,6 @@ filebeat.config.modules:
   # Period on which files under path should be checked for changes
   #reload.period: 10s
 
-output.logstash:
-  hosts: ["{{ logstash_lb_host }}"]
-
 {% if kibana_host is defined %}
 setup.kibana:
   host: "{{ kibana_host }}"
@@ -26,4 +23,7 @@ output.elasticsearch:
   {% for host in es_hosts %}
     - {{ host }}
   {% endfor %}
+{% else %}
+output.logstash:
+  hosts: ["{{ logstash_lb_host }}"]
 {% endif %}
