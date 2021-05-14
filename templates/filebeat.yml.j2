@@ -27,7 +27,6 @@ output.elasticsearch:
 output.logstash:
   hosts: ["{{ logstash_lb_host }}"]
 {% endif %}
-{% endif %}
 
 {% if wireguard in filebeat_modules %}
 filebeat.inputs:
