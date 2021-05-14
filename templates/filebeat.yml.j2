@@ -28,7 +28,7 @@ output.logstash:
   hosts: ["{{ logstash_lb_host }}"]
 {% endif %}
 
-{% if wireguard in filebeat_modules %}
+{% if "wireguard" in filebeat_modules %}
 filebeat.inputs:
   - type: log
     paths:
