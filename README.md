@@ -18,7 +18,8 @@ Role Variables
 - kibana_host: the host to connect to for Kibana. Note: Needs to be a Wireguard address.
 - kibana_username: a username to log in to Kibana with.
 - kibana_password: a password to log in to Kibana with.
-- es_hosts: an array of elasticsearch hosts to write to (only used when configuring the pipeline)
+- es_hosts: an array of elasticsearch hosts to write to (only used when configuring the pipeline).
+- filebeat_modules: a list of modules to be enabled.
 
 
 Example Playbook
@@ -35,6 +36,9 @@ Read traffic over 10.0.0.0/24 and 192.168.0.0/24 using the eth0 interface.
 - es_hosts:
   - https://es1.local:9200
   - https://es2.local:9200
+- filebeat_modules:
+  - zeek
+  - suricata
 ```
 License
 -------

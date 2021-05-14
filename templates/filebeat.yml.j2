@@ -27,3 +27,14 @@ output.elasticsearch:
 output.logstash:
   hosts: ["{{ logstash_lb_host }}"]
 {% endif %}
+{% endif %}
+
+{% if wireguard in filebeat_modules %}
+filebeat.inputs:
+  - type: log
+    paths:
+    - /var/log/wireguard/connected_clients.info
+    - /var/log/wireguard/wireguard.log
+    - /var/log/wireguard/wireguard-service.log
+  enabled: true
+{% endif %}
