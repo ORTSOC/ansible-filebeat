@@ -24,6 +24,6 @@ setup.kibana:
 output.elasticsearch:
   hosts:
   {% for host in es_hosts %}
-    - host
+    - {{ host }}
   {% endfor %}
 {% endif %}
