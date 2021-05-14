@@ -1,11 +1,11 @@
 ---
 
-- name: download elasticsearch
+- name: download filebeat
   get_url:
     url: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.12.1-amd64.deb
     dest: "{{ filebeat_download_path }}"
     checksum: sha512:https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.12.1-amd64.deb.sha512
 
-- name: install elasticsearch
+- name: install filebeat
   apt:
     deb: "{{ filebeat_download_path }}"
