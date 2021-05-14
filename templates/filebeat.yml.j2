@@ -10,12 +10,10 @@ setup.kibana:
   {% endif %}
 {% endif %}
 
-{% if es_output %}
+{% if es_hosts is defined %}
 output.elasticsearch:
   hosts:
-  {% for host in groups["elasticsearch"] %}
-  {% if hostvars[host].master_eligible is defined and hostvars[host].master_eligible %}
-    - {% if elastic_cert_chain is defined %}https://{% else %}http://{% endif %}{{ host }}.{{ domain }}:9200
-  {% endif %}
+  {% for host in es_hosts %}
+    - host
   {% endfor %}
 {% endif %}

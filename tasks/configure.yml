@@ -32,9 +32,11 @@
   vars:
     es_output: true
   notify: restart filebeat
+  when: es_hosts is defined
 
 - name: deploy pipelines to elasticsearch
   ansible.builtin.shell: filebeat setup --pipelines --modules zeek,suricata
+  when: es_hosts is defined
 
 # copy main config from template
 - name: copy filebeat.yml 

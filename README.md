@@ -13,10 +13,12 @@ Requirements
 Role Variables
 --------------
 - filebeat_download_path: the path to download filebeat to.
+  - This is defined in the role, optional for the consumer
 - logstash_lb_host: the logstash host to send logs to. Note: Needs to be a Wireguard address.
 - kibana_host: the host to connect to for Kibana. Note: Needs to be a Wireguard address.
 - kibana_username: a username to log in to Kibana with.
 - kibana_password: a password to log in to Kibana with.
+- es_hosts: an array of elasticsearch hosts to write to (only used when configuring the pipeline)
 
 
 Example Playbook
@@ -30,6 +32,9 @@ Read traffic over 10.0.0.0/24 and 192.168.0.0/24 using the eth0 interface.
 - kibana_host: 10.100.0.31:4000
 - kibana_username: my_username
 - kibana_password: my_password
+- es_hosts:
+  - https://es1.local:9200
+  - https://es2.local:9200
 ```
 License
 -------
