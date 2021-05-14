@@ -3,27 +3,27 @@
 - name: enable Zeek Module
   ansible.builtin.shell: filebeat modules enable zeek
   notify: restart filebeat
-  when: zeek in filebeat_modules
+  when: '"zeek" in filebeat_modules'
 
 - name: transfer zeek.yml
   ansible.builtin.copy:
     src: zeek.yml
     dest: /etc/filebeat/modules.d/zeek.yml
   notify: restart filebeat
-  when: zeek in filebeat_modules
+  when: '"zeek" in filebeat_modules'
 
 # enable suricata
 - name: enable Suricata
   ansible.builtin.shell: filebeat modules enable suricata
   notify: restart filebeat
-  when: suricata in filebeat_modules
+  when: '"suricata" in filebeat_modules'
 
 - name: transfer suricata.yml
   ansible.builtin.copy:
     src: suricata.yml
     dest: /etc/filebeat/modules.d/suricata.yml
   notify: restart filebeat
-  when: suricata in filebeat_modules
+  when: '"suricata" in filebeat_modules'
 
 # setup config with elasticsearch to configure pipeline
 - name: copy filebeat.yml (with ES output)
