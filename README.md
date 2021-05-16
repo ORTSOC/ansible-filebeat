@@ -1,4 +1,4 @@
-# ansible-filebeat
+ansible-filebeat
 =========
 
 Deploys Filebeat, a log collector.
