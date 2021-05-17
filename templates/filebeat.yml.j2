@@ -28,6 +28,8 @@ output.elasticsearch:
 
   username: beats_system
   password: {{ es_creds.beats_system }}
+  ssl.verification_mode: none
+
 {% endif %}
 {% else %}
 output.logstash:
