@@ -17,7 +17,7 @@ setup.kibana:
   {% endif %}
 {% endif %}
 
-{% if es_hosts is defined %}
+{% if es_output %}
 output.elasticsearch:
   hosts:
   {% for host in es_hosts %}

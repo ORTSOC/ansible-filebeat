@@ -1,4 +1,17 @@
 ---
+# setup config with elasticsearch to configure pipeline
+- name: copy filebeat.yml (with ES output)
+  ansible.builtin.template:
+    src: filebeat.yml.j2
+    dest: /etc/filebeat/filebeat.yml
+    owner: root
+    group: root
+    mode: "0644"
+  vars:
+    es_output: true
+  notify: restart filebeat
+  when: es_hosts is defined
+
 # enable zeek
 - name: enable Zeek Module
   ansible.builtin.shell: filebeat modules enable zeek
@@ -24,19 +37,6 @@
     dest: /etc/filebeat/modules.d/suricata.yml
   notify: restart filebeat
   when: '"suricata" in filebeat_modules'
-
-# setup config with elasticsearch to configure pipeline
-- name: copy filebeat.yml (with ES output)
-  ansible.builtin.template:
-    src: filebeat.yml.j2
-    dest: /etc/filebeat/filebeat.yml
-    owner: root
-    group: root
-    mode: "0644"
-  vars:
-    es_output: true
-  notify: restart filebeat
-  when: es_hosts is defined
 
 - name: deploy pipelines to elasticsearch
   ansible.builtin.shell: filebeat setup --pipelines --modules zeek,suricata
