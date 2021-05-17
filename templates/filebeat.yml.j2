@@ -20,14 +20,15 @@ setup.kibana:
 {% if es_output %}
 output.elasticsearch:
   hosts:
-  {% for host in es_hosts %}
+{% for host in es_hosts %}
     - {% if elastic_cert_chain is defined %}https://{% else %}http://{% endif %}{{ host }}:9200
-  {% endfor %}
+{% endfor %}
 
-  {% if elastic_cert_chain %}
+{% if elastic_cert_chain %}
+
   username: beats_system
   password: {{ es_creds.beats_system }}
-  {% endif %}
+{% endif %}
 {% else %}
 output.logstash:
   hosts: ["{{ logstash_lb_host }}"]
