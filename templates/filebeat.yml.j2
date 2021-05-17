@@ -26,8 +26,8 @@ output.elasticsearch:
 
 {% if elastic_cert_chain %}
 
-  username: beats_system
-  password: {{ es_creds.beats_system }}
+  username: beats_pipeline
+  password: {{ es_creds.beats_pipeline }}
   ssl.verification_mode: none
 
 {% endif %}
