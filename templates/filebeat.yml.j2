@@ -40,5 +40,6 @@ filebeat.inputs:
     - /var/log/wireguard/connected_clients.info
     - /var/log/wireguard/wireguard.log
     - /var/log/wireguard/wireguard-service.log
+    tags: ["wireguard"]
   enabled: true
 {% endif %}
