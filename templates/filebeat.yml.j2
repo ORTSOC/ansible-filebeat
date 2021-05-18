@@ -11,10 +11,12 @@ filebeat.config.modules:
 {% if kibana_host is defined %}
 setup.kibana:
   host: "{{ kibana_host }}"
-  {% if kibana_username is defined %}
+{% if kibana_username is defined %}
+
   username: "{{ kibana_username }}"
   password: "{{ kibana_password }}"
-  {% endif %}
+
+{% endif %}
 {% endif %}
 
 {% if es_output %}
